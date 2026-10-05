@@ -4,8 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"net/http"
 	"os"
 	"regexp"
+	"strings"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
@@ -32,6 +34,29 @@ func accClient(t *testing.T) *grafana.Client {
 func accPreCheck(t *testing.T) {
 	if os.Getenv("GRAFANA_URL") == "" || os.Getenv("GRAFANA_AUTH") == "" {
 		t.Fatal("GRAFANA_URL and GRAFANA_AUTH must be set for acceptance tests")
+	}
+}
+
+func ensureFolder(t *testing.T, uid string) {
+	t.Helper()
+	body := strings.NewReader(fmt.Sprintf(`{"uid": %q, "title": %q}`, uid, uid))
+	req, err := http.NewRequestWithContext(context.Background(), http.MethodPost, os.Getenv("GRAFANA_URL")+"/api/folders", body)
+	if err != nil {
+		t.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+	if user, pass, ok := strings.Cut(os.Getenv("GRAFANA_AUTH"), ":"); ok {
+		req.SetBasicAuth(user, pass)
+	} else {
+		req.Header.Set("Authorization", "Bearer "+os.Getenv("GRAFANA_AUTH"))
+	}
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusConflict && resp.StatusCode != http.StatusPreconditionFailed {
+		t.Fatalf("creating folder %s: %s", uid, resp.Status)
 	}
 }
 
@@ -151,7 +176,10 @@ resource "terragraph_dashboard" "test" {
 func TestAccDashboard_lifecycle(t *testing.T) {
 	const name = "terragraph_dashboard.test"
 	resource.Test(t, resource.TestCase{
-		PreCheck:                 func() { accPreCheck(t) },
+		PreCheck: func() {
+			accPreCheck(t)
+			ensureFolder(t, "team-a")
+		},
 		ProtoV6ProviderFactories: protoV6Factories,
 		CheckDestroy:             checkDestroyed(t, "acc-lifecycle"),
 		Steps: []resource.TestStep{

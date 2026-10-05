@@ -1,0 +1,42 @@
+---
+page_title: "{{.Name}} {{.Type}} - {{.ProviderName}}"
+subcategory: ""
+description: |-
+  {{.Description | plainmarkdown | trimspace | prefixlines "  "}}
+---
+
+# {{.Name}} ({{.Type}})
+
+{{ .Description | trimspace }}
+
+## Notes
+
+- Typed attributes are `snake_case`. Free-form attributes take Grafana JSON keys verbatim:
+
+| Block | Free-form attributes |
+| --- | --- |
+| panel | `datasource`, `targets`, `options`, `field_config`, `transformations`, `links`, `library_panel` |
+| variable | `datasource`, `query`, `current`, `options` |
+| annotation | `datasource`, `target`, `filter` |
+| row | `datasource` |
+| dashboard | `time_picker` |
+
+- `extra` (every block): keys merged verbatim into the JSON; must not repeat a set argument.
+- `grid_pos`, `id` optional: panels auto-flow 12x8 on a 24-column grid; `grid_pos = { w, h }` sizes, adding `x`, `y` pins.
+- `row` blocks hold their panels; `collapsed = true` nests them.
+- `schema_version` defaults to 41.
+- `overwrite` applies to create only; `uid` changes force replacement.
+
+## Example Usage
+
+{{ tffile "examples/resources/terragraph_dashboard/resource.tf" }}
+
+{{ .SchemaMarkdown | trimspace }}
+
+## Import
+
+ID is the dashboard UID. See [converting dashboards](../guides/converting-dashboards) for generating config.
+
+{{ tffile "examples/resources/terragraph_dashboard/import-by-block.tf" }}
+
+{{ codefile "shell" "examples/resources/terragraph_dashboard/import.sh" }}

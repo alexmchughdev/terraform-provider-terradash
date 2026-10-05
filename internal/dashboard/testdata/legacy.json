@@ -1,0 +1,27 @@
+{
+  "__inputs": [{"name": "DS_PROM", "label": "Prometheus", "type": "datasource", "pluginId": "prometheus", "pluginName": "Prometheus"}],
+  "__requires": [{"type": "grafana", "id": "grafana", "name": "Grafana", "version": "6.7.0"}],
+  "gnetId": 1860,
+  "id": null,
+  "uid": "",
+  "version": 1,
+  "title": "Legacy node stats",
+  "refresh": false,
+  "schemaVersion": 16,
+  "style": "dark",
+  "timezone": "",
+  "tags": [],
+  "time": {"from": "now-1h", "to": "now"},
+  "templating": {
+    "list": [
+      {"name": "node", "type": "query", "datasource": "${DS_PROM}", "query": "label_values(node_load1, instance)", "hide": true, "refresh": 1, "includeAll": false, "multi": false, "current": {}, "options": []}
+    ]
+  },
+  "annotations": {"list": []},
+  "rows": [
+    {"title": "Load", "height": "250px", "collapse": false, "panels": [{"id": 1, "type": "graph", "title": "Load", "span": 6}]}
+  ],
+  "panels": [
+    {"id": 0, "type": "graph", "title": "Legacy graph", "datasource": "${DS_PROM}", "gridPos": {"x": 0, "y": 0, "w": 12, "h": 7}, "yaxes": [{"format": "short"}, {"format": "short"}], "lines": true}
+  ]
+}

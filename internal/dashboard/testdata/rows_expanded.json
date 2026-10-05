@@ -1,0 +1,14 @@
+{
+  "uid": "rows-expanded",
+  "title": "Expanded rows",
+  "schemaVersion": 41,
+  "time": {"from": "now-1h", "to": "now"},
+  "panels": [
+    {"id": 1, "type": "stat", "title": "Uptime", "gridPos": {"x": 0, "y": 0, "w": 24, "h": 4}},
+    {"id": 2, "type": "row", "title": "HTTP", "collapsed": false, "gridPos": {"x": 0, "y": 4, "w": 24, "h": 1}, "panels": []},
+    {"id": 3, "type": "timeseries", "title": "Latency", "gridPos": {"x": 0, "y": 5, "w": 12, "h": 8}},
+    {"id": 4, "type": "timeseries", "title": "Throughput", "gridPos": {"x": 12, "y": 5, "w": 12, "h": 8}},
+    {"id": 5, "type": "row", "title": "Database", "collapsed": false, "gridPos": {"x": 0, "y": 13, "w": 24, "h": 1}, "panels": []},
+    {"id": 6, "type": "gauge", "title": "Connections", "gridPos": {"x": 0, "y": 14, "w": 8, "h": 6}}
+  ]
+}

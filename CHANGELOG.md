@@ -4,6 +4,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-06
+
+### Security
+
+- Update dependencies: fixes GO-2026-5026 (`golang.org/x/net`), `golang.org/x/text` and `google.golang.org/grpc` (GO-2026-6443) advisories reported by govulncheck.
+
+### Fixed
+
+- CI and CodeQL now run on pushes to `master`.
+
 ## [0.1.0] - 2026-10-06
 
 ### Added
@@ -23,5 +33,6 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - Hardened HTTP client: TLS >= 1.2, same-host redirects only, response size cap.
 - Packaging: archives, deb, rpm, apk and archlinux packages; signed apt repository on GitHub Pages; Terraform Registry-ready releases.
 
-[Unreleased]: https://github.com/alexmchughdev/terraform-provider-terragraph/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/alexmchughdev/terraform-provider-terragraph/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/alexmchughdev/terraform-provider-terragraph/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/alexmchughdev/terraform-provider-terragraph/releases/tag/v0.1.0

@@ -1,0 +1,9 @@
+{
+  "title": "Bare",
+  "panels": [
+    {"type": "stat", "title": "A"},
+    {"type": "stat", "title": "B"},
+    {"type": "row", "title": "R", "collapsed": false, "panels": []},
+    {"type": "timeseries", "title": "C"}
+  ]
+}

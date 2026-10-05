@@ -1,0 +1,26 @@
+{
+  "uid": "rows-collapsed",
+  "title": "Collapsed rows",
+  "schemaVersion": 41,
+  "time": {"from": "now-24h", "to": "now"},
+  "panels": [
+    {"id": 1, "type": "stat", "title": "Overview", "gridPos": {"x": 0, "y": 0, "w": 24, "h": 4}},
+    {
+      "id": 2, "type": "row", "title": "Details", "collapsed": true,
+      "gridPos": {"x": 0, "y": 4, "w": 24, "h": 1},
+      "panels": [
+        {"id": 3, "type": "timeseries", "title": "CPU", "gridPos": {"x": 0, "y": 5, "w": 12, "h": 8}},
+        {"id": 4, "type": "timeseries", "title": "Memory", "gridPos": {"x": 12, "y": 5, "w": 12, "h": 8}}
+      ]
+    },
+    {
+      "id": 5, "type": "row", "title": "Archive", "collapsed": true,
+      "gridPos": {"x": 0, "y": 5, "w": 24, "h": 1},
+      "panels": [
+        {"id": 6, "type": "table", "title": "Old jobs", "gridPos": {"x": 0, "y": 6, "w": 24, "h": 10}}
+      ]
+    },
+    {"id": 7, "type": "row", "title": "Live", "collapsed": false, "gridPos": {"x": 0, "y": 6, "w": 24, "h": 1}, "panels": []},
+    {"id": 8, "type": "logs", "title": "Logs", "gridPos": {"x": 0, "y": 7, "w": 24, "h": 10}}
+  ]
+}

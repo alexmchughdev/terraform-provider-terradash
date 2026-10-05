@@ -1,0 +1,10 @@
+/terraform-provider-terragraph
+/terragraph
+/bin/
+/dist/
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+coverage.out
+*.test

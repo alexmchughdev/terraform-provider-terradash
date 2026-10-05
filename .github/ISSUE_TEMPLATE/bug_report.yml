@@ -1,0 +1,56 @@
+name: Bug report
+description: Something is broken or behaves unexpectedly.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Redact tokens, passwords and internal hostnames before posting.
+        Vulnerabilities: use the [security policy](https://github.com/alexmchughdev/terraform-provider-terragraph/security/policy), not this form.
+  - type: input
+    id: terragraph-version
+    attributes:
+      label: terragraph version
+      description: Provider version or `terragraph -version`.
+    validations:
+      required: true
+  - type: input
+    id: tf-version
+    attributes:
+      label: Terraform or OpenTofu version
+      description: Output of `terraform version` or `tofu version`.
+    validations:
+      required: true
+  - type: input
+    id: grafana-version
+    attributes:
+      label: Grafana version
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Minimal HCL or dashboard JSON
+      render: hcl
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include error output or plan diff.
+    validations:
+      required: true
+  - type: checkboxes
+    id: redacted
+    attributes:
+      label: Redaction
+      options:
+        - label: I removed tokens, passwords and other secrets from everything above.
+          required: true

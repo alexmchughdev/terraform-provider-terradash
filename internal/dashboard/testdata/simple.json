@@ -1,0 +1,44 @@
+{
+  "id": 12,
+  "uid": "simple-demo",
+  "version": 3,
+  "title": "Simple service overview",
+  "description": "Request rate and latency",
+  "tags": ["demo", "service"],
+  "timezone": "browser",
+  "editable": true,
+  "graphTooltip": 0,
+  "refresh": "30s",
+  "schemaVersion": 41,
+  "style": "dark",
+  "time": {"from": "now-6h", "to": "now"},
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Requests per second",
+      "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8},
+      "datasource": {"type": "prometheus", "uid": "prom"},
+      "targets": [{"refId": "A", "expr": "sum(rate(http_requests_total[5m]))"}],
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}},
+      "fieldConfig": {"defaults": {"unit": "reqps"}, "overrides": []}
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Error ratio",
+      "description": "",
+      "gridPos": {"x": 12, "y": 0, "w": 6, "h": 8},
+      "targets": [{"refId": "A", "expr": "sum(rate(errors_total[5m])) / sum(rate(http_requests_total[5m]))"}],
+      "transparent": true,
+      "maxDataPoints": 100
+    },
+    {
+      "id": 3,
+      "type": "text",
+      "title": "Notes",
+      "gridPos": {"x": 18, "y": 0, "w": 6, "h": 8},
+      "options": {"mode": "markdown", "content": "Owned by the platform team."}
+    }
+  ]
+}

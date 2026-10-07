@@ -6,12 +6,12 @@ body:
     attributes:
       value: |
         Redact tokens, passwords and internal hostnames before posting.
-        Vulnerabilities: use the [security policy](https://github.com/alexmchughdev/terraform-provider-terragraph/security/policy), not this form.
+        Vulnerabilities: use the [security policy](https://github.com/alexmchughdev/terraform-provider-terradash/security/policy), not this form.
   - type: input
-    id: terragraph-version
+    id: terradash-version
     attributes:
-      label: terragraph version
-      description: Provider version or `terragraph -version`.
+      label: terradash version
+      description: Provider version or `terradash -version`.
     validations:
       required: true
   - type: input

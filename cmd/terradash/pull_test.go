@@ -80,8 +80,8 @@ func TestPullByUID(t *testing.T) {
 		t.Errorf("resources = %v, want %v", got, want)
 	}
 	contains(t, stdout,
-		"to = terragraph_dashboard.alpha\n", `id = "a1"`,
-		"to = terragraph_dashboard.alpha_2\n", `id = "c1"`,
+		"to = terradash_dashboard.alpha\n", `id = "a1"`,
+		"to = terradash_dashboard.alpha_2\n", `id = "c1"`,
 		`folder_uid = "f1"`,
 	)
 	if strings.Contains(stdout, "version") {
@@ -111,7 +111,7 @@ func TestPullURLFromEnv(t *testing.T) {
 	if code != 0 {
 		t.Fatalf("code = %d, stderr: %s", code, stderr)
 	}
-	contains(t, stdout, `"terragraph_dashboard" "alpha"`)
+	contains(t, stdout, `"terradash_dashboard" "alpha"`)
 }
 
 func TestPullSelection(t *testing.T) {
@@ -199,7 +199,7 @@ func TestPullErrors(t *testing.T) {
 		wantErr string
 	}{
 		{"no url", []string{"pull", "a1"}, "set -url or GRAFANA_URL"},
-		{"bad url", []string{"pull", "-url", "localhost:3000", "a1"}, "terragraph:"},
+		{"bad url", []string{"pull", "-url", "localhost:3000", "a1"}, "terradash:"},
 		{"no selection", []string{"pull", "-url", url}, "specify dashboard UIDs, -all or -folder"},
 		{"unknown uid", []string{"pull", "-url", url, "nope"}, "Dashboard not found"},
 		{"missing CA file", []string{"pull", "-url", url, "-ca-cert", "/nonexistent/ca.pem", "a1"}, "no such file"},
@@ -215,7 +215,7 @@ func TestPullErrors(t *testing.T) {
 			if stdout != "" {
 				t.Errorf("stdout = %q", stdout)
 			}
-			contains(t, stderr, "terragraph:", tt.wantErr)
+			contains(t, stderr, "terradash:", tt.wantErr)
 		})
 	}
 }

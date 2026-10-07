@@ -84,8 +84,8 @@ func TestSingleFile(t *testing.T) {
 	}
 	wantContains(t, string(res.Outputs[0].HCL),
 		"removed {", "from = grafana_dashboard.x", "destroy = false",
-		"import {", `to = terragraph_dashboard.x`, `id = "aaa"`,
-		`resource "terragraph_dashboard" "x"`,
+		"import {", `to = terradash_dashboard.x`, `id = "aaa"`,
+		`resource "terradash_dashboard" "x"`,
 		"folder_uid = grafana_folder.x.uid", "overwrite", "message", `"migrated"`)
 }
 
@@ -112,8 +112,8 @@ func TestForEachFileset(t *testing.T) {
 	if removed != 1 {
 		t.Errorf("removed blocks = %d", removed)
 	}
-	wantContains(t, string(res.Outputs[0].HCL), "removed {", `id = "aaa"`, `"terragraph_dashboard" "d_a"`)
-	wantContains(t, string(res.Outputs[1].HCL), `id = "bbb"`, `"terragraph_dashboard" "d_b"`)
+	wantContains(t, string(res.Outputs[0].HCL), "removed {", `id = "aaa"`, `"terradash_dashboard" "d_a"`)
+	wantContains(t, string(res.Outputs[1].HCL), `id = "bbb"`, `"terradash_dashboard" "d_b"`)
 }
 
 func TestForEachMapAndDedupe(t *testing.T) {
@@ -305,13 +305,13 @@ func TestMissingUID(t *testing.T) {
 	if strings.Contains(out, "import {") {
 		t.Errorf("unexpected import:\n%s", out)
 	}
-	wantContains(t, out, "removed {", `"terragraph_dashboard" "x"`)
+	wantContains(t, out, "removed {", `"terradash_dashboard" "x"`)
 }
 
 func TestIgnoresOtherBlocks(t *testing.T) {
 	res := mustRun(t, map[string]string{
 		"main.tf": `resource "grafana_folder" "f" { title = "f" }
-resource "terragraph_dashboard" "t" {}
+resource "terradash_dashboard" "t" {}
 data "grafana_dashboard" "d" {}
 variable "v" {}
 `,

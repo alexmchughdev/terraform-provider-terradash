@@ -1,4 +1,4 @@
-resource "terragraph_dashboard" "api" {
+resource "terradash_dashboard" "api" {
   uid        = "api-overview"
   folder_uid = "platform"
   title      = "API overview"

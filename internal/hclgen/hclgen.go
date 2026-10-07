@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/hcl/v2/hclwrite"
 	"github.com/zclconf/go-cty/cty"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/schema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/schema"
 )
 
 // A tree value of type hclwrite.Tokens is written verbatim as an expression.

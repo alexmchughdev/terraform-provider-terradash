@@ -9,7 +9,7 @@
 
 ## Reporting
 
-- Use GitHub private vulnerability reporting: <https://github.com/alexmchughdev/terraform-provider-terragraph/security/advisories/new>.
+- Use GitHub private vulnerability reporting: <https://github.com/alexmchughdev/terraform-provider-terradash/security/advisories/new>.
 - Do not open a public issue, PR or discussion for a vulnerability.
 
 Include:

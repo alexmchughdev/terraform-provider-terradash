@@ -1,20 +1,20 @@
 ---
-page_title: "terragraph_dashboard_json Data Source - terragraph"
+page_title: "terradash_dashboard_json Data Source - terradash"
 subcategory: ""
 description: |-
     Renders a dashboard written in HCL to Grafana JSON without deploying it.
 ---
 
-# terragraph_dashboard_json (Data Source)
+# terradash_dashboard_json (Data Source)
 
 Renders a dashboard written in HCL to Grafana JSON without deploying it.
 
-Same arguments and blocks as [`terragraph_dashboard`](../resources/dashboard), except `folder_uid`, `overwrite`, `message`, `url`, `version`. Never calls Grafana (works without provider `url`). Output: `json`.
+Same arguments and blocks as [`terradash_dashboard`](../resources/dashboard), except `folder_uid`, `overwrite`, `message`, `url`, `version`. Never calls Grafana (works without provider `url`). Output: `json`.
 
 ## Example usage
 
 ```terraform
-data "terragraph_dashboard_json" "preview" {
+data "terradash_dashboard_json" "preview" {
   title = "Rendered without deploying"
 
   panel {
@@ -24,7 +24,7 @@ data "terragraph_dashboard_json" "preview" {
 }
 
 output "dashboard_json" {
-  value = data.terragraph_dashboard_json.preview.json
+  value = data.terradash_dashboard_json.preview.json
 }
 ```
 

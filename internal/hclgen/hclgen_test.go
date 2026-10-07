@@ -14,7 +14,7 @@ import (
 	"github.com/zclconf/go-cty/cty/function/stdlib"
 	ctyjson "github.com/zclconf/go-cty/cty/json"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/schema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/schema"
 )
 
 var testBlock = schema.Block{
@@ -41,7 +41,7 @@ var testBlock = schema.Block{
 func generate(t *testing.T, m map[string]any, opts Options) string {
 	t.Helper()
 	f := hclwrite.NewEmptyFile()
-	Resource(f.Body(), "terragraph_dashboard", "main", testBlock, m, opts)
+	Resource(f.Body(), "terradash_dashboard", "main", testBlock, m, opts)
 	out := string(f.Bytes())
 	if got := string(hclwrite.Format([]byte(out))); got != out {
 		t.Errorf("output is not formatted:\n%s\nwant:\n%s", out, got)
@@ -291,7 +291,7 @@ func TestResourceStructure(t *testing.T) {
 		},
 	}
 	src := generate(t, m, Options{})
-	want := `resource "terragraph_dashboard" "main" {
+	want := `resource "terradash_dashboard" "main" {
   title = "T"
   tags  = ["a", "b"]
   uid   = "abc"
@@ -326,9 +326,9 @@ func TestResourceEmptyObjectAttribute(t *testing.T) {
 
 func TestImport(t *testing.T) {
 	f := hclwrite.NewEmptyFile()
-	Import(f.Body(), "terragraph_dashboard", "main", `a"b`)
+	Import(f.Body(), "terradash_dashboard", "main", `a"b`)
 	got := string(f.Bytes())
-	want := "import {\n  to = terragraph_dashboard.main\n  id = \"a\\\"b\"\n}\n"
+	want := "import {\n  to = terradash_dashboard.main\n  id = \"a\\\"b\"\n}\n"
 	if got != want {
 		t.Errorf("got:\n%s\nwant:\n%s", got, want)
 	}

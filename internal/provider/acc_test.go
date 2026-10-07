@@ -15,11 +15,11 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/plancheck"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/grafana"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/grafana"
 )
 
 var protoV6Factories = map[string]func() (tfprotov6.ProviderServer, error){
-	"terragraph": func() (tfprotov6.ProviderServer, error) { return New("test"), nil },
+	"terradash": func() (tfprotov6.ProviderServer, error) { return New("test"), nil },
 }
 
 func accClient(t *testing.T) *grafana.Client {
@@ -76,11 +76,11 @@ func lifecycleConfig(title, folder string) string {
 		folderAttr = fmt.Sprintf("folder_uid = %q", folder)
 	}
 	return fmt.Sprintf(`
-resource "terragraph_dashboard" "test" {
+resource "terradash_dashboard" "test" {
   uid         = "acc-lifecycle"
   title       = %q
   description = "managed by terraform"
-  tags        = ["acc", "terragraph"]
+  tags        = ["acc", "terradash"]
   timezone    = "utc"
   refresh     = "30s"
   editable    = true
@@ -174,7 +174,7 @@ resource "terragraph_dashboard" "test" {
 }
 
 func TestAccDashboard_lifecycle(t *testing.T) {
-	const name = "terragraph_dashboard.test"
+	const name = "terradash_dashboard.test"
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
 			accPreCheck(t)
@@ -232,7 +232,7 @@ func TestAccDashboard_lifecycle(t *testing.T) {
 
 func driftConfig(title string) string {
 	return fmt.Sprintf(`
-resource "terragraph_dashboard" "test" {
+resource "terradash_dashboard" "test" {
   uid   = "acc-drift"
   title = %q
   panel {
@@ -260,7 +260,7 @@ func modifyRemote(t *testing.T, uid string, edit func(map[string]any)) {
 }
 
 func TestAccDashboard_drift(t *testing.T) {
-	const name = "terragraph_dashboard.test"
+	const name = "terradash_dashboard.test"
 	resource.Test(t, resource.TestCase{
 		PreCheck:                 func() { accPreCheck(t) },
 		ProtoV6ProviderFactories: protoV6Factories,
@@ -290,7 +290,7 @@ func TestAccDashboard_drift(t *testing.T) {
 }
 
 func TestAccDashboard_deletedOutside(t *testing.T) {
-	const name = "terragraph_dashboard.test"
+	const name = "terradash_dashboard.test"
 	resource.Test(t, resource.TestCase{
 		PreCheck:                 func() { accPreCheck(t) },
 		ProtoV6ProviderFactories: protoV6Factories,
@@ -314,23 +314,23 @@ func TestAccDashboard_deletedOutside(t *testing.T) {
 }
 
 const deletedConfig = `
-resource "terragraph_dashboard" "test" {
+resource "terradash_dashboard" "test" {
   uid   = "acc-deleted"
   title = "Acc Deleted"
 }
 `
 
 func TestAccDashboardJSONDataSource(t *testing.T) {
-	const name = "data.terragraph_dashboard_json.test"
+	const name = "data.terradash_dashboard_json.test"
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: protoV6Factories,
 		Steps: []resource.TestStep{{
 			Config: `
-provider "terragraph" {
+provider "terradash" {
   url = "http://127.0.0.1:1"
 }
 
-data "terragraph_dashboard_json" "test" {
+data "terradash_dashboard_json" "test" {
   title = "Offline"
   panel {
     type    = "text"

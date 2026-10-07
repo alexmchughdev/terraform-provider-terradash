@@ -12,9 +12,9 @@ import (
 	"github.com/hashicorp/hcl/v2/hclwrite"
 	"go.yaml.in/yaml/v3"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/dashboard"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/hclgen"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/tfschema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/dashboard"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/hclgen"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/tfschema"
 )
 
 type Source struct {

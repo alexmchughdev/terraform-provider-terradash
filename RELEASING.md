@@ -2,10 +2,10 @@
 
 ## One-time setup
 
-1. GitHub repo `alexmchughdev/terraform-provider-terragraph` (the Terraform Registry requires the `terraform-provider-<name>` name). Public.
+1. GitHub repo `alexmchughdev/terraform-provider-terradash` (the Terraform Registry requires the `terraform-provider-<name>` name). Public.
 2. Signing key (RSA; the registry rejects ed25519):
    ```sh
-   gpg --quick-gen-key "terragraph releases <you@example.com>" rsa4096 sign 3y
+   gpg --quick-gen-key "terradash releases <you@example.com>" rsa4096 sign 3y
    gpg --armor --export-secret-keys <FINGERPRINT>   # -> secret GPG_PRIVATE_KEY
    gpg --armor --export <FINGERPRINT>               # -> registry + key.gpg
    ```
@@ -17,7 +17,7 @@
 ## Each release
 
 1. Move `Unreleased` in `CHANGELOG.md` to the new version; commit.
-2. `git tag -a vX.Y.Z -m "terragraph vX.Y.Z" && git push origin master vX.Y.Z`
+2. `git tag -a vX.Y.Z -m "terradash vX.Y.Z" && git push origin master vX.Y.Z`
 3. The `Release` workflow:
    - GoReleaser: provider zips, `SHA256SUMS` + `.sig`, registry manifest, CLI archives, deb/rpm/apk/Arch packages, GitHub release.
    - `apt` job: adds the `.deb`s to the signed apt repository on `gh-pages`.
@@ -25,9 +25,9 @@
 
 ## Verify
 
-- `apt update && apt install terragraph` on Debian/Ubuntu (see README).
-- `terraform init` with `source = "alexmchughdev/terragraph"`, `version = "X.Y.Z"`.
-- `gpg --verify terraform-provider-terragraph_X.Y.Z_SHA256SUMS.sig terraform-provider-terragraph_X.Y.Z_SHA256SUMS`
+- `apt update && apt install terradash` on Debian/Ubuntu (see README).
+- `terraform init` with `source = "alexmchughdev/terradash"`, `version = "X.Y.Z"`.
+- `gpg --verify terraform-provider-terradash_X.Y.Z_SHA256SUMS.sig terraform-provider-terradash_X.Y.Z_SHA256SUMS`
 
 ## Local dry run
 

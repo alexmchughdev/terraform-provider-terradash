@@ -49,13 +49,13 @@ write_provider() {
   cat >provider.tf <<'EOF'
 terraform {
   required_providers {
-    terragraph = {
-      source = "alexmchughdev/terragraph"
+    terradash = {
+      source = "alexmchughdev/terradash"
     }
   }
 }
 
-provider "terragraph" {}
+provider "terradash" {}
 EOF
 }
 
@@ -72,7 +72,7 @@ terraform {
 provider "grafana" {}
 
 resource "grafana_folder" "e2e" {
-  title = "terragraph e2e migrate"
+  title = "terradash e2e migrate"
 }
 
 resource "grafana_dashboard" "simple" {
@@ -88,18 +88,18 @@ EOF
 
 step "build"
 mkdir -p "$work/bin"
-(cd "$root" && go build -o "$work/bin/terraform-provider-terragraph" . && go build -o "$work/bin/terragraph" ./cmd/terragraph)
+(cd "$root" && go build -o "$work/bin/terraform-provider-terradash" . && go build -o "$work/bin/terradash" ./cmd/terradash)
 cat >"$work/tfrc" <<EOF
 provider_installation {
   dev_overrides {
-    "registry.terraform.io/alexmchughdev/terragraph" = "$work/bin"
-    "registry.opentofu.org/alexmchughdev/terragraph" = "$work/bin"
+    "registry.terraform.io/alexmchughdev/terradash" = "$work/bin"
+    "registry.opentofu.org/alexmchughdev/terradash" = "$work/bin"
   }
   direct {}
 }
 EOF
 export TF_CLI_CONFIG_FILE="$work/tfrc" TF_IN_AUTOMATION=1
-terragraph="$work/bin/terragraph"
+terradash="$work/bin/terradash"
 
 for bin in "${binaries[@]}"; do
   tf=$(command -v "$bin")
@@ -135,14 +135,14 @@ for bin in "${binaries[@]}"; do
   dir="$work/$bin-converted"
   mkdir -p "$dir"
   cd "$dir"
-  "$terragraph" convert -o . "$root/internal/dashboard/testdata"
+  "$terradash" convert -o . "$root/internal/dashboard/testdata"
   "$tf" fmt -check
   write_provider
   write_tfvars
   "$tf" validate -no-color >/dev/null
   "$tf" apply -auto-approve -input=false -no-color >/dev/null
   expect_no_changes "converted"
-  mapfile -t uids < <("$tf" show -json | jq -r '.values.root_module.resources[] | select(.type == "terragraph_dashboard") | .values.uid')
+  mapfile -t uids < <("$tf" show -json | jq -r '.values.root_module.resources[] | select(.type == "terradash_dashboard") | .values.uid')
 
   step "import with generated config"
   dir="$work/$bin-imported"
@@ -150,7 +150,7 @@ for bin in "${binaries[@]}"; do
   cd "$dir"
   write_provider
   for i in "${!uids[@]}"; do
-    printf 'import {\n  to = terragraph_dashboard.d%d\n  id = "%s"\n}\n\n' "$i" "${uids[$i]}" >>imports.tf
+    printf 'import {\n  to = terradash_dashboard.d%d\n  id = "%s"\n}\n\n' "$i" "${uids[$i]}" >>imports.tf
   done
   "$tf" plan -generate-config-out=generated.tf -input=false -no-color >"$work/plan.log" 2>&1 || { cat "$work/plan.log"; fail "generate config"; }
   grep -q "${#uids[@]} to import, 0 to add, 0 to change, 0 to destroy" "$work/plan.log" || { cat "$work/plan.log"; fail "import plan"; }
@@ -164,7 +164,7 @@ for bin in "${binaries[@]}"; do
   mkdir -p "$dir"
   cd "$dir"
   write_provider
-  "$terragraph" pull -o . "${uids[@]}"
+  "$terradash" pull -o . "${uids[@]}"
   "$tf" fmt -check
   write_tfvars
   "$tf" plan -input=false -no-color >"$work/plan.log" 2>&1 || { cat "$work/plan.log"; fail "pull plan"; }
@@ -187,9 +187,9 @@ for bin in "${binaries[@]}"; do
   "$tf" init -input=false -no-color >/dev/null
   "$tf" apply -auto-approve -input=false -no-color >/dev/null
   version=$(grafana GET "/api/dashboards/uid/$migrate_uid" | jq .meta.version)
-  "$terragraph" migrate -o terragraph.tf -remove .
-  perl -0pi -e 's|(source = "grafana/grafana"\n    \})|$1\n    terragraph = {\n      source = "alexmchughdev/terragraph"\n    }|' main.tf
-  printf '\nprovider "terragraph" {}\n' >>main.tf
+  "$terradash" migrate -o terradash.tf -remove .
+  perl -0pi -e 's|(source = "grafana/grafana"\n    \})|$1\n    terradash = {\n      source = "alexmchughdev/terradash"\n    }|' main.tf
+  printf '\nprovider "terradash" {}\n' >>main.tf
   "$tf" fmt -check
   if grep -q grafana_dashboard main.tf; then fail "migrate -remove left grafana_dashboard blocks"; fi
   "$tf" plan -input=false -no-color >"$work/plan.log" 2>&1 || { cat "$work/plan.log"; fail "migrate plan"; }

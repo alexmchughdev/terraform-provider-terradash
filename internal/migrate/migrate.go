@@ -13,9 +13,9 @@ import (
 	"github.com/hashicorp/hcl/v2/hclwrite"
 	"github.com/zclconf/go-cty/cty"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/convert"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/hclgen"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/tfschema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/convert"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/hclgen"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/tfschema"
 )
 
 const grafanaDashboard = "grafana_dashboard"

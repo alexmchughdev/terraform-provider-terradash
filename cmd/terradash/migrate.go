@@ -10,14 +10,14 @@ import (
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclwrite"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/migrate"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/migrate"
 )
 
 func runMigrate(args []string, stdout, stderr io.Writer) error {
 	fs := flag.NewFlagSet("migrate", flag.ContinueOnError)
 	fs.SetOutput(stderr)
 	fs.Usage = func() {
-		fmt.Fprintln(stderr, "Usage: terragraph migrate [flags] DIR\n\nConverts grafana_dashboard resources in the module at DIR to terragraph_dashboard,\nwith removed and import blocks so no dashboard is destroyed or recreated.\n\nFlags:")
+		fmt.Fprintln(stderr, "Usage: terradash migrate [flags] DIR\n\nConverts grafana_dashboard resources in the module at DIR to terradash_dashboard,\nwith removed and import blocks so no dashboard is destroyed or recreated.\n\nFlags:")
 		fs.PrintDefaults()
 	}
 	out := fs.String("o", "", "output .tf file or directory (default stdout)")

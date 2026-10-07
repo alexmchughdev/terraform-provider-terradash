@@ -60,8 +60,8 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement through GitHub
-private vulnerability reporting for alexmchughdev/terraform-provider-terragraph
-(<https://github.com/alexmchughdev/terraform-provider-terragraph/security/advisories/new>), or by
+private vulnerability reporting for alexmchughdev/terraform-provider-terradash
+(<https://github.com/alexmchughdev/terraform-provider-terradash/security/advisories/new>), or by
 contacting the maintainers privately through GitHub.
 All complaints will be reviewed and investigated promptly and fairly.
 

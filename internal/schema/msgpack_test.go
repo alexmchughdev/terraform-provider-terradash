@@ -7,9 +7,9 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/dashboard"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/schema"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/tfschema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/dashboard"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/schema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/tfschema"
 )
 
 func TestMsgpackRoundTrip(t *testing.T) {

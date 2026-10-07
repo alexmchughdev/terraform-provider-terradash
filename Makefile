@@ -2,7 +2,7 @@ VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 GOOS    ?= $(shell go env GOOS)
 GOARCH  ?= $(shell go env GOARCH)
 LDFLAGS := -s -w -X main.version=$(VERSION)
-PLUGIN_DIR ?= $(HOME)/.terraform.d/plugins/registry.terraform.io/alexmchughdev/terragraph/$(VERSION)/$(GOOS)_$(GOARCH)
+PLUGIN_DIR ?= $(HOME)/.terraform.d/plugins/registry.terraform.io/alexmchughdev/terradash/$(VERSION)/$(GOOS)_$(GOARCH)
 
 .DEFAULT_GOAL := help
 
@@ -12,12 +12,12 @@ help: ## Show this help
 	@awk 'BEGIN {FS = ":.*## "} /^[a-zA-Z_-]+:.*## / {printf "  %-10s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 build: ## Build provider and CLI into ./bin
-	go build -trimpath -ldflags '$(LDFLAGS)' -o bin/terraform-provider-terragraph .
-	go build -trimpath -ldflags '$(LDFLAGS)' -o bin/terragraph ./cmd/terragraph
+	go build -trimpath -ldflags '$(LDFLAGS)' -o bin/terraform-provider-terradash .
+	go build -trimpath -ldflags '$(LDFLAGS)' -o bin/terradash ./cmd/terradash
 
 install: ## Install provider into the local Terraform plugin directory
 	mkdir -p $(PLUGIN_DIR)
-	go build -trimpath -ldflags '$(LDFLAGS)' -o $(PLUGIN_DIR)/terraform-provider-terragraph_v$(VERSION) .
+	go build -trimpath -ldflags '$(LDFLAGS)' -o $(PLUGIN_DIR)/terraform-provider-terradash_v$(VERSION) .
 
 test: ## Run unit tests with the race detector
 	go test -race ./...
@@ -36,7 +36,7 @@ fmt: ## Format code and tidy modules
 	go mod tidy
 
 docs: ## Regenerate registry docs from templates/ and examples/
-	go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs@v0.25.0 generate --provider-name terragraph
+	go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs@v0.25.0 generate --provider-name terradash
 
 cover: ## Generate coverage report
 	go test -race -coverprofile=coverage.out -covermode=atomic ./...

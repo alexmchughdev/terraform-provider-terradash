@@ -46,10 +46,10 @@ func TestConvertFlags(t *testing.T) {
 		wantAbsent []string
 		wantStderr string
 	}{
-		{"import", dashA, []string{"-import"}, []string{"import {", "to = terragraph_dashboard.alpha_board", `id = "a1"`}, nil, ""},
-		{"import without uid warns", dashNoUID, []string{"-import"}, []string{`resource "terragraph_dashboard" "no_uid"`}, []string{"import {"}, "warning: no_uid: no uid, skipping import block"},
+		{"import", dashA, []string{"-import"}, []string{"import {", "to = terradash_dashboard.alpha_board", `id = "a1"`}, nil, ""},
+		{"import without uid warns", dashNoUID, []string{"-import"}, []string{`resource "terradash_dashboard" "no_uid"`}, []string{"import {"}, "warning: no_uid: no uid, skipping import block"},
 		{"folder uid", dashA, []string{"-folder-uid", "f9"}, []string{`folder_uid = "f9"`}, nil, ""},
-		{"name", dashA, []string{"-name", "custom"}, []string{`"terragraph_dashboard" "custom"`}, []string{"alpha_board"}, ""},
+		{"name", dashA, []string{"-name", "custom"}, []string{`"terradash_dashboard" "custom"`}, []string{"alpha_board"}, ""},
 		{"api response folder", `{"dashboard":` + dashA + `,"meta":{"folderUid":"f1"}}`, nil, []string{`folder_uid = "f1"`}, nil, ""},
 	}
 	for _, tt := range tests {
@@ -82,7 +82,7 @@ func TestConvertInputsToVariables(t *testing.T) {
 	for _, b := range body.Blocks {
 		kinds = append(kinds, b.Type+"."+strings.Join(b.Labels, "."))
 	}
-	want := []string{"variable.ds_prometheus", "variable.var_env", "resource.terragraph_dashboard.shared"}
+	want := []string{"variable.ds_prometheus", "variable.var_env", "resource.terradash_dashboard.shared"}
 	if !slices.Equal(kinds, want) {
 		t.Errorf("blocks = %v, want %v", kinds, want)
 	}
@@ -136,7 +136,7 @@ func TestConvertOutputFile(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	contains(t, string(data), `variable "ds_prometheus"`, `resource "terragraph_dashboard" "shared"`)
+	contains(t, string(data), `variable "ds_prometheus"`, `resource "terradash_dashboard" "shared"`)
 	parseHCL(t, string(data))
 
 	code, _, stderr = runCLI(t, "", "convert", "-o", out, in)
@@ -244,7 +244,7 @@ func TestConvertErrors(t *testing.T) {
 			if stdout != "" {
 				t.Errorf("stdout = %q", stdout)
 			}
-			contains(t, stderr, "terragraph:", tt.wantErr)
+			contains(t, stderr, "terradash:", tt.wantErr)
 		})
 	}
 }

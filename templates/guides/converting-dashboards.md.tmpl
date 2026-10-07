@@ -2,22 +2,22 @@
 page_title: "Converting existing dashboards"
 subcategory: "Guides"
 description: |-
-  Turn existing Grafana dashboards or dashboard JSON files into terragraph HCL.
+  Turn existing Grafana dashboards or dashboard JSON files into terradash HCL.
 ---
 
 # Converting existing dashboards
 
-- `terragraph convert`: JSON or YAML files, offline.
-- `terragraph migrate`: `grafana_dashboard` resources to terragraph ([guide](migrating-from-grafana-provider)).
-- `terragraph pull`: live Grafana.
+- `terradash convert`: JSON or YAML files, offline.
+- `terradash migrate`: `grafana_dashboard` resources to terradash ([guide](migrating-from-grafana-provider)).
+- `terradash pull`: live Grafana.
 - No CLI: `import` block + `-generate-config-out`.
 
-Build the CLI with `make build` (`bin/terragraph`).
+Build the CLI with `make build` (`bin/terradash`).
 
-## `terragraph convert`
+## `terradash convert`
 
 ```shell
-terragraph convert [flags] FILE|DIR|- ...
+terradash convert [flags] FILE|DIR|- ...
 ```
 
 Inputs: files, directories (`*.json`, `*.yaml`, `*.yml` directly inside), `-` for stdin (once). JSON or YAML is detected from content.
@@ -37,7 +37,7 @@ Inputs: files, directories (`*.json`, `*.yaml`, `*.yml` directly inside), `-` fo
 - Nothing is overwritten without `-force`; directory output checks all targets first.
 
 ```shell
-terragraph convert -o dashboards/ -folder-uid platform exported/*.json
+terradash convert -o dashboards/ -folder-uid platform exported/*.json
 terraform fmt -check dashboards/ && terraform validate
 ```
 
@@ -47,13 +47,13 @@ terraform fmt -check dashboards/ && terraform validate
 - Each input becomes a Terraform `variable`; `${DS_X}` becomes `var.<name>`; constants keep their value as default.
 - Variables go to `variables.tf` (directory mode) or the top of the output.
 
-## `terragraph pull`
+## `terradash pull`
 
 ```shell
 export GRAFANA_URL=https://grafana.example.com GRAFANA_AUTH=glsa_xxxxxxxx
-terragraph pull -o dashboards/ UID [UID ...]
-terragraph pull -o dashboards/ -folder platform,sre
-terragraph pull -o dashboards/ -all
+terradash pull -o dashboards/ UID [UID ...]
+terradash pull -o dashboards/ -folder platform,sre
+terradash pull -o dashboards/ -all
 ```
 
 Credentials come only from `GRAFANA_AUTH` (no flag).
@@ -76,7 +76,7 @@ Credentials come only from `GRAFANA_AUTH` (no flag).
 
 ## Workflow
 
-1. `terragraph pull -o dashboards/ -folder platform`
+1. `terradash pull -o dashboards/ -folder platform`
 2. `terraform plan` shows `N to import, 0 to change`; `terraform apply`.
 3. Remove the `import` blocks.
 

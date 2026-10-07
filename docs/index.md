@@ -1,10 +1,10 @@
 ---
-page_title: "Provider: terragraph"
+page_title: "Provider: terradash"
 description: |-
   Manage Grafana dashboards written in native HCL.
 ---
 
-# terragraph provider
+# terradash provider
 
 Manages Grafana dashboards as typed HCL. Guides: [converting dashboards](guides/converting-dashboards), [writing dashboards](guides/writing-dashboards).
 
@@ -14,7 +14,7 @@ Manages Grafana dashboards as typed HCL. Guides: [converting dashboards](guides/
 ## Example usage
 
 ```terraform
-provider "terragraph" {
+provider "terradash" {
   url  = "https://grafana.example.com"
   auth = var.grafana_token
 }
@@ -25,7 +25,7 @@ variable "grafana_token" {
 }
 ```
 
-Environment only: `provider "terragraph" {}`.
+Environment only: `provider "terradash" {}`.
 
 ## Authentication
 

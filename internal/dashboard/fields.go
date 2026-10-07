@@ -1,6 +1,6 @@
 package dashboard
 
-import "github.com/alexmchughdev/terraform-provider-terragraph/internal/schema"
+import "github.com/alexmchughdev/terraform-provider-terradash/internal/schema"
 
 type field struct {
 	name     string

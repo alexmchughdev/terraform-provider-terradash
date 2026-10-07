@@ -10,15 +10,15 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/convert"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/grafana"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/convert"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/grafana"
 )
 
 func runPull(ctx context.Context, args []string, stdout, stderr io.Writer) error {
 	fs := flag.NewFlagSet("pull", flag.ContinueOnError)
 	fs.SetOutput(stderr)
 	fs.Usage = func() {
-		fmt.Fprintln(stderr, "Usage: terragraph pull [flags] [UID ...]\n\nCredentials are read from GRAFANA_AUTH (token, user:password or anonymous).\n\nFlags:")
+		fmt.Fprintln(stderr, "Usage: terradash pull [flags] [UID ...]\n\nCredentials are read from GRAFANA_AUTH (token, user:password or anonymous).\n\nFlags:")
 		fs.PrintDefaults()
 	}
 	url := fs.String("url", os.Getenv("GRAFANA_URL"), "Grafana URL (default $GRAFANA_URL)")
@@ -64,7 +64,7 @@ func newClient(url, orgID, caCertPath string, insecure bool, stderr io.Writer) (
 		Auth:               os.Getenv("GRAFANA_AUTH"),
 		InsecureSkipVerify: insecure,
 		Retries:            grafana.DefaultRetries,
-		UserAgent:          "terragraph/" + version,
+		UserAgent:          "terradash/" + version,
 	}
 	if orgID != "" {
 		id, err := strconv.ParseInt(orgID, 10, 64)

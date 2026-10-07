@@ -57,7 +57,7 @@ func TestMigrateStdout(t *testing.T) {
 	}
 	parseHCL(t, stdout)
 	contains(t, stdout, "removed {", "from = grafana_dashboard.good", "import {", `id = "g1"`,
-		`resource "terragraph_dashboard" "good"`, "folder_uid = grafana_folder.x.uid")
+		`resource "terradash_dashboard" "good"`, "folder_uid = grafana_folder.x.uid")
 	contains(t, stderr, "warning:", "grafana_dashboard.dynamic")
 	src, _ := os.ReadFile(filepath.Join(dir, "main.tf"))
 	if string(src) != migrateModule {
@@ -81,7 +81,7 @@ func TestMigrateOutputFile(t *testing.T) {
 		t.Fatal(err)
 	}
 	parseHCL(t, string(data))
-	contains(t, string(data), "removed {", "terragraph_dashboard")
+	contains(t, string(data), "removed {", "terradash_dashboard")
 
 	code, _, stderr = runCLI(t, "", "migrate", "-o", out, dir)
 	if code != 1 {
@@ -123,7 +123,7 @@ func TestMigrateRemove(t *testing.T) {
 	}
 
 	data, _ := os.ReadFile(out)
-	contains(t, string(data), `"terragraph_dashboard" "good"`, `"terragraph_dashboard" "second"`)
+	contains(t, string(data), `"terradash_dashboard" "good"`, `"terradash_dashboard" "second"`)
 	if strings.Contains(string(data), "dynamic") {
 		t.Errorf("skipped dashboard in output:\n%s", data)
 	}

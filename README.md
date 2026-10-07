@@ -53,6 +53,8 @@ provider "terradash" {
 }
 ```
 
+OpenTofu: until terradash is listed on registry.opentofu.org, use `source = "registry.terraform.io/alexmchughdev/terradash"`.
+
 - `auth`: service account token, `user:password` or `anonymous`.
 - Also: `org_id`, `ca_cert`, `insecure_skip_verify` (`GRAFANA_ORG_ID`, `GRAFANA_CA_CERT`, `GRAFANA_INSECURE_SKIP_VERIFY`), `http_headers`, `retries`, `timeout`.
 

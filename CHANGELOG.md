@@ -4,6 +4,10 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+### Fixed
+
+- Release checksums: `terraform-provider-terradash_X_SHA256SUMS` lists only provider archives (Terraform Registry requirement); packages and CLI archives get a separate signed `terradash_X_SHA256SUMS`.
+
 ## [0.2.0] - 2026-10-08
 
 ### Changed

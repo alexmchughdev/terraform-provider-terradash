@@ -1,0 +1,31 @@
+Architectures: amd64 arm64
+Codename: stable
+Components: main
+Date: Wed, 07 Oct 2026 23:36:01 +0000
+Label: terradash
+Origin: terradash
+Suite: stable
+MD5Sum:
+ 1154429015f98107ed27b94e21a84d95              148 Release
+ 13e814b46d8d6df71adfa8fe302956c2             1336 main/binary-amd64/Packages
+ af74ac7c8aee58cb3cf7c20c655dddca              678 main/binary-amd64/Packages.gz
+ 80a4f9975a404032eb02e0af7d2b8678             1336 main/binary-arm64/Packages
+ 4826222fac0bf62dc71425f5728d59c3              678 main/binary-arm64/Packages.gz
+SHA1:
+ 9724ba4daf3ebf7d204dc8ef3a3d98c3319aab43              148 Release
+ 44cd58f348398abca21c9d759fca2aa6cc674cf1             1336 main/binary-amd64/Packages
+ e0c49addd67a83a6e21cfb0842e87a3927e6038b              678 main/binary-amd64/Packages.gz
+ 33b07f79efc15d80ed5bd5e12bdd33825b0a95cf             1336 main/binary-arm64/Packages
+ b327a3ad9d7756e370788b07aa8c589c25d621be              678 main/binary-arm64/Packages.gz
+SHA256:
+ 82e6e72ca17937b20f3e0f55d35caab61b22701340b7ff8e95e896278c7dd699              148 Release
+ a7eceb51651750a70d3a556cc18e796ca6422f92c383f180d3e6597729f5d5f2             1336 main/binary-amd64/Packages
+ 7fc9225d2c8220ba2adc1fa75a67169394267df8241d0ca05a60ed7ee621159c              678 main/binary-amd64/Packages.gz
+ f714438131bfd96ad36ea7de48e3121ffedca5c8d849f872e89c1569eefdbeb6             1336 main/binary-arm64/Packages
+ 56b2cb7c27744eba2c559b2be0007e7a87989b54528dfb29a4f011b1e99e83b6              678 main/binary-arm64/Packages.gz
+SHA512:
+ 7e0c006e543bae67bb99e91619e830119cee79e63f0774ab7948b0380c351dc489556e779a629283be3a2da9b8e51c14c97356cdd4d771d967c6bf3a26f17a87              148 Release
+ f49635b520e6b3625048f71b02500cbe66c0f44c50c68a5cdc0f34331c6de90ade5ab92d662fd1b1d1af489302a8c0497f27744415a86fc5ba719dec66ba4031             1336 main/binary-amd64/Packages
+ f61f4136c5721f2a566d95240e5bddf98d99b31dda683896a6586ef6d304b82395b6ec2f9cfa438c1692ed307fb385a60f6d73344c12093a5ed92165e2a033f2              678 main/binary-amd64/Packages.gz
+ 35a68adab6ddb7487d0a8cb5862fe32ea426c04870fa4dc823a6b9c12cac36366baae6228c853f8d4571cdd5c49a8a770b40a00f27994e226b85b32cab12e97d             1336 main/binary-arm64/Packages
+ ecbf2bb8c1f7da0044d6ead22315e0f0d3ac961fc9d85b62a9c0bc5a9893f1b0d49d7aa38e6339582c6442e1445434484c18e806af85e18d725af3120e9308f9              678 main/binary-arm64/Packages.gz

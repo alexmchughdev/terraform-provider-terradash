@@ -1,0 +1,30 @@
+Package: terradash
+Architecture: amd64
+Version: 0.2.0
+Priority: optional
+Maintainer: Alex McHugh <alex@alexmchugh.dev>
+Installed-Size: 24736
+Filename: pool/main/terradash_0.2.0_amd64.deb
+Size: 9966242
+MD5sum: df02c17aed5b44c60de8baec3755d15e
+SHA1: 7d1866df01da2f4f2825d2086d14a1c3871acd19
+SHA256: f0a6c8ae217654e046ea36f2a2d66ca6b66a6e3144f398a6bd92c05bd39c395b
+SHA512: b04432dff3d01f7a39d6f3c378da26cb7b83a4b49ea4e76bbfc6d69ce2b581105ed02f282930f4788f2a8fb4d9c257b9c14de51304f7320d76550e1494559bf1
+Homepage: https://github.com/alexmchughdev/terraform-provider-terradash
+Description: Grafana dashboards in HCL - Terraform/OpenTofu provider and JSON-to-HCL converter.
+
+Package: terradash
+Architecture: amd64
+Version: 0.2.1
+Priority: optional
+Maintainer: Alex McHugh <alex@alexmchugh.dev>
+Installed-Size: 24736
+Filename: pool/main/terradash_0.2.1_amd64.deb
+Size: 9966274
+MD5sum: cdc161d7eb02983e813b8be4055f87ec
+SHA1: ece4fcf8ab8966044351deb20e2dfb4f594ad3b3
+SHA256: 1d8f48617b961b987c4784ecdc3c732b79cb3fffe0f37ad4316e6d25fd6fe181
+SHA512: ba08fb99807d2d841f82d974655bbbc2b956fa37b457874f0331d91e345638c4c96cf5ec96b8c4f2abb8a88a4a206da587d88a12710a0e7e5ea5f777cf1dffad
+Homepage: https://github.com/alexmchughdev/terraform-provider-terradash
+Description: Grafana dashboards in HCL - Terraform/OpenTofu provider and JSON-to-HCL converter.
+

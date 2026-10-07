@@ -45,14 +45,8 @@ archives:
     name_template: "terraform-provider-terradash_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
   - id: cli
     ids: [cli]
-    formats: [tar.gz]
-    name_template: "terradash_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
-    format_overrides:
-      - goos: windows
-        formats: [zip]
-    files:
-      - LICENSE*
-      - README*
+    formats: [binary]
+    name_template: "terradash-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
 
 nfpms:
   - id: packages
@@ -84,7 +78,7 @@ nfpms:
 checksum:
   name_template: "terraform-provider-terradash_{{ .Version }}_SHA256SUMS"
   algorithm: sha256
-  ids: [provider, cli]
+  ids: [provider]
   extra_files:
     - glob: terraform-registry-manifest.json
       name_template: "terraform-provider-terradash_{{ .Version }}_manifest.json"

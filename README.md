@@ -36,7 +36,7 @@ echo "deb [signed-by=/etc/apt/keyrings/terradash.gpg] https://alexmchughdev.gith
 sudo apt update && sudo apt install terradash
 ```
 
-rpm, apk and Arch packages and archives are attached to each [release](https://github.com/alexmchughdev/terraform-provider-terradash/releases). Packages also install the provider into Terraform's local plugin directory, so `init` works offline.
+rpm, apk and Arch packages and standalone CLI binaries (macOS, Windows, FreeBSD, Linux) are attached to each [release](https://github.com/alexmchughdev/terraform-provider-terradash/releases). Packages also install the provider into Terraform's local plugin directory, so `init` works offline.
 
 ## Configure
 

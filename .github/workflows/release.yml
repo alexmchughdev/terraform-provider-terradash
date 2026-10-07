@@ -36,7 +36,9 @@ jobs:
           TAG: ${{ github.ref_name }}
         run: |
           sums="terradash_${TAG#v}_SHA256SUMS"
-          (cd dist && sha256sum terradash[_-]*.{deb,rpm,apk,zst,tar.gz,zip} >"$sums")
+          jq -r '.[] | select(.type == "Binary" and (.name | startswith("terradash-"))) | "\(.path) \(.name)"' dist/artifacts.json |
+            while read -r src name; do cp "$src" "dist/$name"; done
+          (cd dist && find . -maxdepth 1 -type f -name 'terradash[-_]*' ! -name '*SHA256SUMS*' -printf '%f\n' | sort | xargs sha256sum >"$sums")
           gpg --batch --local-user "$FINGERPRINT" --output "dist/$sums.sig" --detach-sign "dist/$sums"
           gh release upload "$TAG" "dist/$sums" "dist/$sums.sig"
       - uses: actions/upload-artifact@v4

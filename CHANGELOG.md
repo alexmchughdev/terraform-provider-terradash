@@ -4,9 +4,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-10-08
+
 ### Fixed
 
-- Release checksums: the Terraform Registry requires `terraform-provider-terradash_X_SHA256SUMS` to list exactly the release's `.zip`/`.tar.gz` assets, so Linux packages moved to a separate signed `terradash_X_SHA256SUMS`.
+- Terraform Registry downloads: the registry treats every `*_<os>_<arch>.zip`/`.tar.gz` release asset as a provider package, so CLI archives were served instead of the provider. The CLI now ships as standalone binaries (`terradash-<version>-<os>-<arch>`), and `terraform-provider-terradash_X_SHA256SUMS` lists only provider archives.
+- Packages and CLI binaries are covered by a separate signed `terradash_X_SHA256SUMS`.
 
 ## [0.2.0] - 2026-10-08
 
@@ -44,7 +47,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 - Hardened HTTP client: TLS >= 1.2, same-host redirects only, response size cap.
 - Packaging: archives, deb, rpm, apk and archlinux packages; signed apt repository on GitHub Pages; Terraform Registry-ready releases.
 
-[Unreleased]: https://github.com/alexmchughdev/terraform-provider-terradash/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/alexmchughdev/terraform-provider-terradash/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/alexmchughdev/terraform-provider-terradash/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/alexmchughdev/terraform-provider-terradash/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/alexmchughdev/terraform-provider-terradash/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/alexmchughdev/terraform-provider-terradash/releases/tag/v0.1.0

@@ -1,11 +1,11 @@
 ---
-page_title: "terragraph_dashboard Resource - terragraph"
+page_title: "terradash_dashboard Resource - terradash"
 subcategory: ""
 description: |-
     A Grafana dashboard.
 ---
 
-# terragraph_dashboard (Resource)
+# terradash_dashboard (Resource)
 
 A Grafana dashboard.
 
@@ -30,7 +30,7 @@ A Grafana dashboard.
 ## Example Usage
 
 ```terraform
-resource "terragraph_dashboard" "api" {
+resource "terradash_dashboard" "api" {
   uid        = "api-overview"
   folder_uid = "platform"
   title      = "API overview"
@@ -303,11 +303,11 @@ ID is the dashboard UID. See [converting dashboards](../guides/converting-dashbo
 
 ```terraform
 import {
-  to = terragraph_dashboard.api
+  to = terradash_dashboard.api
   id = "api-overview"
 }
 ```
 
 ```shell
-terraform import terragraph_dashboard.api api-overview
+terraform import terradash_dashboard.api api-overview
 ```

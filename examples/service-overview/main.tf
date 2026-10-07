@@ -1,12 +1,12 @@
 terraform {
   required_providers {
-    terragraph = {
-      source = "alexmchughdev/terragraph"
+    terradash = {
+      source = "alexmchughdev/terradash"
     }
   }
 }
 
-provider "terragraph" {}
+provider "terradash" {}
 
 locals {
   datasource = { type = "grafana-testdata-datasource", uid = "testdata" }
@@ -27,7 +27,7 @@ locals {
   }
 }
 
-resource "terragraph_dashboard" "service_overview" {
+resource "terradash_dashboard" "service_overview" {
   uid           = "service-overview"
   title         = "Service overview"
   description   = "Golden signals for customer-facing services."
@@ -171,5 +171,5 @@ resource "terragraph_dashboard" "service_overview" {
 }
 
 output "url" {
-  value = terragraph_dashboard.service_overview.url
+  value = terradash_dashboard.service_overview.url
 }

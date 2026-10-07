@@ -2,19 +2,19 @@
 page_title: "Migrating from the grafana provider"
 subcategory: "Guides"
 description: |-
-  Move grafana_dashboard resources (JSON) from the grafana/grafana provider to terragraph_dashboard without recreating dashboards.
+  Move grafana_dashboard resources (JSON) from the grafana/grafana provider to terradash_dashboard without recreating dashboards.
 ---
 
 # Migrating from the grafana provider
 
-- Converts `grafana_dashboard` (`config_json`) to `terragraph_dashboard`.
+- Converts `grafana_dashboard` (`config_json`) to `terradash_dashboard`.
 - Generates `removed` blocks (old resources leave state, dashboards are not destroyed) and `import` blocks (dashboards enter state).
 - Needs Terraform/OpenTofu >= 1.7 for `removed` blocks. Older: `terraform state rm grafana_dashboard.x` per resource.
-- Build the CLI with `make build` (`bin/terragraph`).
+- Build the CLI with `make build` (`bin/terradash`).
 
 ## Steps
 
-1. Add terragraph next to the existing provider. `grafana_folder` etc. stay on the grafana provider.
+1. Add terradash next to the existing provider. `grafana_folder` etc. stay on the grafana provider.
 
    ```terraform
    terraform {
@@ -22,21 +22,21 @@ description: |-
        grafana = {
          source = "grafana/grafana"
        }
-       terragraph = {
-         source = "alexmchughdev/terragraph"
+       terradash = {
+         source = "alexmchughdev/terradash"
        }
      }
    }
 
    provider "grafana" {}
 
-   provider "terragraph" {} # shares GRAFANA_URL / GRAFANA_AUTH
+   provider "terradash" {} # shares GRAFANA_URL / GRAFANA_AUTH
    ```
 
 2. Migrate:
 
    ```shell
-   terragraph migrate -o terragraph.tf -remove .
+   terradash migrate -o terradash.tf -remove .
    ```
 
 3. `terraform plan`. Expect `N to import, 0 to add, 0 to change, 0 to destroy` and `will no longer be managed ... will not be destroyed` for each old resource.
@@ -62,11 +62,11 @@ removed {
 }
 
 import {
-  to = terragraph_dashboard.simple
+  to = terradash_dashboard.simple
   id = "simple-demo"
 }
 
-resource "terragraph_dashboard" "simple" {
+resource "terradash_dashboard" "simple" {
   uid        = "simple-demo"
   folder_uid = grafana_folder.team.uid
   title      = "Simple service overview"
@@ -95,10 +95,10 @@ resource "terragraph_dashboard" "simple" {
 
 Warnings go to stderr.
 
-## `terragraph migrate`
+## `terradash migrate`
 
 ```shell
-terragraph migrate [flags] DIR
+terradash migrate [flags] DIR
 ```
 
 Reads `*.tf` in `DIR`.

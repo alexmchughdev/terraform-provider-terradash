@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/provider"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/provider"
 )
 
 var version = "dev"
@@ -20,7 +20,7 @@ func main() {
 	if *debug {
 		opts = append(opts, tf6server.WithManagedDebug())
 	}
-	err := tf6server.Serve("registry.terraform.io/alexmchughdev/terragraph", func() tfprotov6.ProviderServer {
+	err := tf6server.Serve("registry.terraform.io/alexmchughdev/terradash", func() tfprotov6.ProviderServer {
 		return provider.New(version)
 	}, opts...)
 	if err != nil {

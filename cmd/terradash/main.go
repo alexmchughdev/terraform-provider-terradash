@@ -12,15 +12,15 @@ import (
 
 var version = "dev"
 
-const usage = `terragraph converts Grafana dashboards to terragraph HCL.
+const usage = `terradash converts Grafana dashboards to terradash HCL.
 
 Usage:
-  terragraph convert [flags] FILE|DIR|- ...  convert dashboard JSON or YAML files
-  terragraph pull [flags] [UID ...]         export dashboards from a Grafana instance
-  terragraph migrate [flags] DIR            move grafana_dashboard resources to terragraph
-  terragraph version
+  terradash convert [flags] FILE|DIR|- ...  convert dashboard JSON or YAML files
+  terradash pull [flags] [UID ...]         export dashboards from a Grafana instance
+  terradash migrate [flags] DIR            move grafana_dashboard resources to terradash
+  terradash version
 
-Run "terragraph <command> -h" for command flags.`
+Run "terradash <command> -h" for command flags.`
 
 func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
@@ -57,7 +57,7 @@ func run(ctx context.Context, args []string, stdin io.Reader, stdout, stderr io.
 	case errors.As(err, &usageErr):
 		return 2
 	case err != nil:
-		fmt.Fprintln(stderr, "terragraph:", err)
+		fmt.Fprintln(stderr, "terradash:", err)
 		return 1
 	}
 	return 0

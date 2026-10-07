@@ -24,8 +24,8 @@ for arch in $architectures; do
 done
 
 apt-ftparchive \
-  -o APT::FTPArchive::Release::Origin=terragraph \
-  -o APT::FTPArchive::Release::Label=terragraph \
+  -o APT::FTPArchive::Release::Origin=terradash \
+  -o APT::FTPArchive::Release::Label=terradash \
   -o APT::FTPArchive::Release::Suite="$suite" \
   -o APT::FTPArchive::Release::Codename="$suite" \
   -o APT::FTPArchive::Release::Architectures="$architectures" \

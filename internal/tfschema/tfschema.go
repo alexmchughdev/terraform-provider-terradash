@@ -1,13 +1,13 @@
 package tfschema
 
 import (
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/dashboard"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/schema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/dashboard"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/schema"
 )
 
 const (
-	ResourceType   = "terragraph_dashboard"
-	DataSourceType = "terragraph_dashboard_json"
+	ResourceType   = "terradash_dashboard"
+	DataSourceType = "terradash_dashboard_json"
 )
 
 var Provider = schema.Block{

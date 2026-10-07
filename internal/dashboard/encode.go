@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/schema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/schema"
 )
 
 const defaultSchemaVersion = 41

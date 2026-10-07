@@ -1,4 +1,4 @@
-data "terragraph_dashboard_json" "preview" {
+data "terradash_dashboard_json" "preview" {
   title = "Rendered without deploying"
 
   panel {
@@ -8,5 +8,5 @@ data "terragraph_dashboard_json" "preview" {
 }
 
 output "dashboard_json" {
-  value = data.terragraph_dashboard_json.preview.json
+  value = data.terradash_dashboard_json.preview.json
 }

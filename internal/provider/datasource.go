@@ -8,8 +8,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 	"github.com/hashicorp/terraform-plugin-go/tftypes"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/dashboard"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/tfschema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/dashboard"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/tfschema"
 )
 
 func (p *Provider) ValidateDataResourceConfig(_ context.Context, req *tfprotov6.ValidateDataResourceConfigRequest) (*tfprotov6.ValidateDataResourceConfigResponse, error) {

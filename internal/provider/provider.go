@@ -12,9 +12,9 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/grafana"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/schema"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/tfschema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/grafana"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/schema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/tfschema"
 )
 
 const (
@@ -101,7 +101,7 @@ func (p *Provider) clientConfig(cfg map[string]any) (grafana.Config, error) {
 		URL:       stringOr(cfg["url"], os.Getenv("GRAFANA_URL")),
 		Auth:      stringOr(cfg["auth"], os.Getenv("GRAFANA_AUTH")),
 		Retries:   grafana.DefaultRetries,
-		UserAgent: "terraform-provider-terragraph/" + p.version,
+		UserAgent: "terraform-provider-terradash/" + p.version,
 	}
 	orgID, err := int64Setting(cfg["org_id"], "GRAFANA_ORG_ID")
 	if err != nil {

@@ -141,7 +141,7 @@ func TestConvertImport(t *testing.T) {
 			if hasImport != tt.wantImport {
 				t.Errorf("import block = %v, want %v\n%s", hasImport, tt.wantImport, out.HCL)
 			}
-			if tt.wantImport && !strings.Contains(string(out.HCL), "to = terragraph_dashboard.my_dash") {
+			if tt.wantImport && !strings.Contains(string(out.HCL), "to = terradash_dashboard.my_dash") {
 				t.Errorf("import target missing:\n%s", out.HCL)
 			}
 			if diff := cmp.Diff(tt.wantWarnings, out.Warnings); diff != "" {
@@ -167,7 +167,7 @@ func TestConvertResource(t *testing.T) {
 	out := Convert(src, "main", Options{})
 	body := parseHCL(t, out.HCL)
 	if len(body.Blocks) != 1 || body.Blocks[0].Type != "resource" ||
-		strings.Join(body.Blocks[0].Labels, ".") != "terragraph_dashboard.main" {
+		strings.Join(body.Blocks[0].Labels, ".") != "terradash_dashboard.main" {
 		t.Fatalf("unexpected blocks:\n%s", out.HCL)
 	}
 	res := body.Blocks[0].Body

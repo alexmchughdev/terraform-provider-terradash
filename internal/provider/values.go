@@ -4,9 +4,9 @@ import (
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 	"github.com/hashicorp/terraform-plugin-go/tftypes"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/dashboard"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/schema"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/tfschema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/dashboard"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/schema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/tfschema"
 )
 
 func unmarshal(dv *tfprotov6.DynamicValue, b schema.Block) (tftypes.Value, error) {

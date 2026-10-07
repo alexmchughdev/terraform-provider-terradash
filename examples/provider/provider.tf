@@ -1,4 +1,4 @@
-provider "terragraph" {
+provider "terradash" {
   url  = "https://grafana.example.com"
   auth = var.grafana_token
 }

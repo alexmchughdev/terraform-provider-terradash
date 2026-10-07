@@ -11,8 +11,8 @@ import (
 
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/convert"
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/dashboard"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/convert"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/dashboard"
 )
 
 func runConvert(args []string, stdin io.Reader, stdout, stderr io.Writer) error {

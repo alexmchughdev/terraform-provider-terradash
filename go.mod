@@ -1,4 +1,4 @@
-module github.com/alexmchughdev/terraform-provider-terragraph
+module github.com/alexmchughdev/terraform-provider-terradash
 
 go 1.27.1
 

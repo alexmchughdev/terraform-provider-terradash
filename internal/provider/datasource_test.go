@@ -7,7 +7,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/tfschema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/tfschema"
 )
 
 func TestReadDataSource(t *testing.T) {

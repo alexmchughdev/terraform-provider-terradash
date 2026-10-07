@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 )
 
-var errUnsupported = errors.New("terragraph does not support this operation")
+var errUnsupported = errors.New("terradash does not support this operation")
 
 func (p *Provider) GetResourceIdentitySchemas(context.Context, *tfprotov6.GetResourceIdentitySchemasRequest) (*tfprotov6.GetResourceIdentitySchemasResponse, error) {
 	return &tfprotov6.GetResourceIdentitySchemasResponse{}, nil

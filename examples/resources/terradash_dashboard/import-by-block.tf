@@ -1,4 +1,4 @@
 import {
-  to = terragraph_dashboard.api
+  to = terradash_dashboard.api
   id = "api-overview"
 }

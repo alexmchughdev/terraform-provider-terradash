@@ -1,6 +1,6 @@
 version: 2
 
-project_name: terraform-provider-terragraph
+project_name: terraform-provider-terradash
 
 before:
   hooks:
@@ -9,7 +9,7 @@ before:
 builds:
   - id: provider
     main: .
-    binary: terraform-provider-terragraph_v{{ .Version }}
+    binary: terraform-provider-terradash_v{{ .Version }}
     env:
       - CGO_ENABLED=0
     flags:
@@ -23,8 +23,8 @@ builds:
       - goos: windows
         goarch: arm64
   - id: cli
-    main: ./cmd/terragraph
-    binary: terragraph
+    main: ./cmd/terradash
+    binary: terradash
     env:
       - CGO_ENABLED=0
     flags:
@@ -42,11 +42,11 @@ archives:
   - id: provider
     ids: [provider]
     formats: [zip]
-    name_template: "terraform-provider-terragraph_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    name_template: "terraform-provider-terradash_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
   - id: cli
     ids: [cli]
     formats: [tar.gz]
-    name_template: "terragraph_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    name_template: "terradash_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     format_overrides:
       - goos: windows
         formats: [zip]
@@ -56,37 +56,37 @@ archives:
 
 nfpms:
   - id: packages
-    package_name: terragraph
+    package_name: terradash
     ids: [provider, cli]
     formats: [deb, rpm, apk, archlinux]
     file_name_template: "{{ .ConventionalFileName }}"
-    bindir: /usr/lib/terragraph
-    vendor: terragraph
-    homepage: https://github.com/alexmchughdev/terraform-provider-terragraph
+    bindir: /usr/lib/terradash
+    vendor: terradash
+    homepage: https://github.com/alexmchughdev/terraform-provider-terradash
     maintainer: Alex McHugh <alex@alexmchugh.dev>
     description: Grafana dashboards in HCL - Terraform/OpenTofu provider and JSON-to-HCL converter.
     license: MPL-2.0
     contents:
-      - src: ../lib/terragraph/terragraph
-        dst: /usr/bin/terragraph
+      - src: ../lib/terradash/terradash
+        dst: /usr/bin/terradash
         type: symlink
-      - src: ../../../../../../../../lib/terragraph/terraform-provider-terragraph_v{{ .Version }}
-        dst: /usr/share/terraform/plugins/registry.terraform.io/alexmchughdev/terragraph/{{ .Version }}/linux_{{ .Arch }}/terraform-provider-terragraph_v{{ .Version }}
+      - src: ../../../../../../../../lib/terradash/terraform-provider-terradash_v{{ .Version }}
+        dst: /usr/share/terraform/plugins/registry.terraform.io/alexmchughdev/terradash/{{ .Version }}/linux_{{ .Arch }}/terraform-provider-terradash_v{{ .Version }}
         type: symlink
-      - src: ../../../../../../../../lib/terragraph/terraform-provider-terragraph_v{{ .Version }}
-        dst: /usr/share/terraform/plugins/registry.opentofu.org/alexmchughdev/terragraph/{{ .Version }}/linux_{{ .Arch }}/terraform-provider-terragraph_v{{ .Version }}
+      - src: ../../../../../../../../lib/terradash/terraform-provider-terradash_v{{ .Version }}
+        dst: /usr/share/terraform/plugins/registry.opentofu.org/alexmchughdev/terradash/{{ .Version }}/linux_{{ .Arch }}/terraform-provider-terradash_v{{ .Version }}
         type: symlink
       - src: LICENSE
-        dst: /usr/share/licenses/terragraph/LICENSE
+        dst: /usr/share/licenses/terradash/LICENSE
       - src: README.md
-        dst: /usr/share/doc/terragraph/README.md
+        dst: /usr/share/doc/terradash/README.md
 
 checksum:
-  name_template: "terraform-provider-terragraph_{{ .Version }}_SHA256SUMS"
+  name_template: "terraform-provider-terradash_{{ .Version }}_SHA256SUMS"
   algorithm: sha256
   extra_files:
     - glob: terraform-registry-manifest.json
-      name_template: "terraform-provider-terragraph_{{ .Version }}_manifest.json"
+      name_template: "terraform-provider-terradash_{{ .Version }}_manifest.json"
 
 signs:
   - artifacts: checksum
@@ -103,10 +103,10 @@ release:
   draft: false
   extra_files:
     - glob: terraform-registry-manifest.json
-      name_template: "terraform-provider-terragraph_{{ .Version }}_manifest.json"
+      name_template: "terraform-provider-terradash_{{ .Version }}_manifest.json"
   github:
     owner: alexmchughdev
-    name: terraform-provider-terragraph
+    name: terraform-provider-terradash
 
 changelog:
   disable: true

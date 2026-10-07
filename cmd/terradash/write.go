@@ -13,7 +13,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/convert"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/convert"
 )
 
 func write(outputs []convert.Output, out string, force bool, stdout, stderr io.Writer) error {

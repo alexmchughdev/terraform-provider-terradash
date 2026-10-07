@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"maps"
 
-	"github.com/alexmchughdev/terraform-provider-terragraph/internal/schema"
+	"github.com/alexmchughdev/terraform-provider-terradash/internal/schema"
 )
 
 // Decode converts a Grafana dashboard model into a tree matching Body.

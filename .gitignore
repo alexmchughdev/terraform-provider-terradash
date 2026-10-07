@@ -1,5 +1,5 @@
-/terraform-provider-terragraph
-/terragraph
+/terraform-provider-terradash
+/terradash
 /bin/
 /dist/
 *.tfstate

@@ -1,16 +1,16 @@
-# terragraph
+# terradash
 
-Terraform/OpenTofu provider (`alexmchughdev/terragraph`) for Grafana dashboards in native HCL, plus a `terragraph` CLI that converts dashboard JSON/YAML or a live Grafana into HCL.
+Terraform/OpenTofu provider (`alexmchughdev/terradash`) for Grafana dashboards in native HCL, plus a `terradash` CLI that converts dashboard JSON/YAML or a live Grafana into HCL.
 
 - Typed snake_case blocks (`variable`, `annotation`, `link`, `panel`, `row`); plugin payloads use Grafana's JSON keys verbatim.
 - `extra` carries keys without a typed attribute.
 - Auto layout and ids; drift ignores layout noise; `overwrite = false` on create.
-- `terragraph_dashboard_json` renders JSON without deploying.
+- `terradash_dashboard_json` renders JSON without deploying.
 
 ## Example
 
 ```terraform
-resource "terragraph_dashboard" "service_overview" {
+resource "terradash_dashboard" "service_overview" {
   uid   = "service-overview"
   title = "Service overview"
 
@@ -31,23 +31,23 @@ Provider: from the Terraform Registry on `init` (below). CLI and provider as a p
 
 ```sh
 # Debian/Ubuntu
-curl -fsSL https://alexmchughdev.github.io/terraform-provider-terragraph/key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/terragraph.gpg
-echo "deb [signed-by=/etc/apt/keyrings/terragraph.gpg] https://alexmchughdev.github.io/terraform-provider-terragraph stable main" | sudo tee /etc/apt/sources.list.d/terragraph.list
-sudo apt update && sudo apt install terragraph
+curl -fsSL https://alexmchughdev.github.io/terraform-provider-terradash/key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/terradash.gpg
+echo "deb [signed-by=/etc/apt/keyrings/terradash.gpg] https://alexmchughdev.github.io/terraform-provider-terradash stable main" | sudo tee /etc/apt/sources.list.d/terradash.list
+sudo apt update && sudo apt install terradash
 ```
 
-rpm, apk and Arch packages and archives are attached to each [release](https://github.com/alexmchughdev/terraform-provider-terragraph/releases). Packages also install the provider into Terraform's local plugin directory, so `init` works offline.
+rpm, apk and Arch packages and archives are attached to each [release](https://github.com/alexmchughdev/terraform-provider-terradash/releases). Packages also install the provider into Terraform's local plugin directory, so `init` works offline.
 
 ## Configure
 
 ```terraform
 terraform {
   required_providers {
-    terragraph = { source = "alexmchughdev/terragraph" }
+    terradash = { source = "alexmchughdev/terradash" }
   }
 }
 
-provider "terragraph" {
+provider "terradash" {
   url  = "https://grafana.example.com" # or GRAFANA_URL
   auth = var.grafana_token             # or GRAFANA_AUTH
 }
@@ -56,15 +56,15 @@ provider "terragraph" {
 - `auth`: service account token, `user:password` or `anonymous`.
 - Also: `org_id`, `ca_cert`, `insecure_skip_verify` (`GRAFANA_ORG_ID`, `GRAFANA_CA_CERT`, `GRAFANA_INSECURE_SKIP_VERIFY`), `http_headers`, `retries`, `timeout`.
 
-Local build (Go required): `make build` (`bin/terraform-provider-terragraph`, `bin/terragraph`), `make install`.
+Local build (Go required): `make build` (`bin/terraform-provider-terradash`, `bin/terradash`), `make install`.
 
 Dev override (`TF_CLI_CONFIG_FILE`, `~/.terraformrc` or `~/.tofurc`); skip `init`:
 
 ```hcl
 provider_installation {
   dev_overrides {
-    "registry.terraform.io/alexmchughdev/terragraph" = "/path/to/terragraph/bin"
-    "registry.opentofu.org/alexmchughdev/terragraph" = "/path/to/terragraph/bin"
+    "registry.terraform.io/alexmchughdev/terradash" = "/path/to/terradash/bin"
+    "registry.opentofu.org/alexmchughdev/terradash" = "/path/to/terradash/bin"
   }
   direct {}
 }
@@ -73,13 +73,13 @@ provider_installation {
 ## Convert existing dashboards
 
 ```sh
-terragraph convert -o dashboards/ -import exported/*.{json,yaml}   # offline
-terragraph pull -o dashboards/ UID [UID ...]                       # or -all, -folder UID1,UID2
+terradash convert -o dashboards/ -import exported/*.{json,yaml}   # offline
+terradash pull -o dashboards/ UID [UID ...]                       # or -all, -folder UID1,UID2
 ```
 
-`pull` needs `GRAFANA_URL` and `GRAFANA_AUTH`. Existing files need `-force`. See `terragraph convert -h`, `terragraph pull -h`.
+`pull` needs `GRAFANA_URL` and `GRAFANA_AUTH`. Existing files need `-force`. See `terradash convert -h`, `terradash pull -h`.
 
-`terragraph migrate -o terragraph.tf -remove .` converts `grafana_dashboard` resources from the `grafana/grafana` provider ([guide](docs/guides/migrating-from-grafana-provider.md)).
+`terradash migrate -o terradash.tf -remove .` converts `grafana_dashboard` resources from the `grafana/grafana` provider ([guide](docs/guides/migrating-from-grafana-provider.md)).
 
 Provider only: add an `import` block (ID = dashboard UID), then `terraform plan -generate-config-out=dashboards.tf`.
 

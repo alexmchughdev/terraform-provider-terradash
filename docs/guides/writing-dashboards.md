@@ -2,7 +2,7 @@
 page_title: "Writing dashboards in HCL"
 subcategory: "Guides"
 description: |-
-  Patterns for writing maintainable Grafana dashboards with terragraph.
+  Patterns for writing maintainable Grafana dashboards with terradash.
 ---
 
 # Writing dashboards in HCL
@@ -15,7 +15,7 @@ locals {
   services   = { api = "API", checkout = "Checkout" }
 }
 
-resource "terragraph_dashboard" "per_service" {
+resource "terradash_dashboard" "per_service" {
   title = "Per service"
 
   row {
@@ -41,7 +41,7 @@ resource "terragraph_dashboard" "per_service" {
 ## Heredocs
 
 ```terraform
-resource "terragraph_dashboard" "notes" {
+resource "terradash_dashboard" "notes" {
   title = "Notes"
 
   panel {
@@ -78,7 +78,7 @@ resource "terragraph_dashboard" "notes" {
 ## Preview JSON
 
 ```terraform
-data "terragraph_dashboard_json" "preview" {
+data "terradash_dashboard_json" "preview" {
   title = "Preview"
 
   panel {
@@ -88,11 +88,11 @@ data "terragraph_dashboard_json" "preview" {
 }
 
 output "json" {
-  value = data.terragraph_dashboard_json.preview.json
+  value = data.terradash_dashboard_json.preview.json
 }
 ```
 
-`terraform apply -target=data.terragraph_dashboard_json.preview && terraform output -raw json`, or `terraform console`.
+`terraform apply -target=data.terradash_dashboard_json.preview && terraform output -raw json`, or `terraform console`.
 
 ## Unmodelled keys
 

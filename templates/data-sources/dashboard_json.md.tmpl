@@ -9,10 +9,10 @@ description: |-
 
 {{ .Description | trimspace }}
 
-Same arguments and blocks as [`terragraph_dashboard`](../resources/dashboard), except `folder_uid`, `overwrite`, `message`, `url`, `version`. Never calls Grafana (works without provider `url`). Output: `json`.
+Same arguments and blocks as [`terradash_dashboard`](../resources/dashboard), except `folder_uid`, `overwrite`, `message`, `url`, `version`. Never calls Grafana (works without provider `url`). Output: `json`.
 
 ## Example usage
 
-{{ tffile "examples/data-sources/terragraph_dashboard_json/data-source.tf" }}
+{{ tffile "examples/data-sources/terradash_dashboard_json/data-source.tf" }}
 
 {{ .SchemaMarkdown | trimspace }}

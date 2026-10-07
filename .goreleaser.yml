@@ -84,7 +84,7 @@ nfpms:
 checksum:
   name_template: "terraform-provider-terradash_{{ .Version }}_SHA256SUMS"
   algorithm: sha256
-  ids: [provider]
+  ids: [provider, cli]
   extra_files:
     - glob: terraform-registry-manifest.json
       name_template: "terraform-provider-terradash_{{ .Version }}_manifest.json"

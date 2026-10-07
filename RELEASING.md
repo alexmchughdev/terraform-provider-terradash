@@ -27,7 +27,7 @@
 
 - `apt update && apt install terradash` on Debian/Ubuntu (see README).
 - `terraform init` with `source = "alexmchughdev/terradash"`, `version = "X.Y.Z"`.
-- `gpg --verify terraform-provider-terradash_X.Y.Z_SHA256SUMS.sig terraform-provider-terradash_X.Y.Z_SHA256SUMS` (provider zips; the registry rejects releases whose provider checksums list anything else)
+- `gpg --verify terraform-provider-terradash_X.Y.Z_SHA256SUMS.sig terraform-provider-terradash_X.Y.Z_SHA256SUMS` (every `.zip`/`.tar.gz` asset and the manifest; the registry rejects any mismatch)
 - `gpg --verify terradash_X.Y.Z_SHA256SUMS.sig terradash_X.Y.Z_SHA256SUMS` (packages, CLI archives)
 
 ## Local dry run

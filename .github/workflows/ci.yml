@@ -79,7 +79,7 @@ jobs:
           terraform_version: ${{ matrix.version }}
           terraform_wrapper: false
       - if: matrix.tool == 'opentofu'
-        uses: opentofu/setup-opentofu@v1
+        uses: opentofu/setup-opentofu@v2
         with:
           tofu_version: ${{ matrix.version }}
           tofu_wrapper: false
@@ -156,7 +156,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
         with:
           terraform_wrapper: false
-      - uses: opentofu/setup-opentofu@v1
+      - uses: opentofu/setup-opentofu@v2
         with:
           tofu_wrapper: false
       - run: sudo apt-get install -y --no-install-recommends jq
